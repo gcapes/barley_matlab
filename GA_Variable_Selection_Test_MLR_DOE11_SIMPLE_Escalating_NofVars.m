@@ -23,7 +23,7 @@
     %f(x)=MLR_fitting_and_Q2_by_LOO_from_X_Array_vs2
     %f(x)=Deletion_of_Excess_Variables_in_a_GA
 
-clear all
+% clear all
 rng('shuffle') %Randomize the seed for the random number generator.
 
 
