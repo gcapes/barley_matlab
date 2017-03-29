@@ -21,6 +21,7 @@ for ff=1:Nrow
             Total_No_Vars=sum(Single_Chromasome,2);
             Variable_Position=zeros(Total_No_Vars,1);
             %Determine where all the selected variables are.
+            tic
             for dd=1:Ncol
                 if Single_Chromasome(1,dd)==1 
                     Variable_Position(Counter_12,1)=dd;
@@ -28,6 +29,12 @@ for ff=1:Nrow
                 else
                 end
             end
+            oldtimer=toc
+            tic
+            Variable_Position_vec=find(Single_Chromasome==1).';
+            newtimer=toc;
+            sprintf('%s%g','Speedup=',double(oldtimer)/double(newtimer))
+            assert(isequal(Variable_Position_vec,Variable_Position))
             %Hence "Variable_Position" is a list of the selected genes (=1) in
             %Chromasome ff
         
