@@ -206,6 +206,13 @@ for Run_V=1:1
                 Predict_Array(ij,ik)=X_Predict(ij,ik).*Coefficients(1,ik);
             end
         end
+        old_Predict_Array=Predict_Array;
+        Predict_Array=zeros(size(X_Predict));
+        for ij=1:Nrow_2
+            Predict_Array(ij,:) = X_Predict(ij,:).*Coefficients(1,:);
+        end
+        assert(isequal(Predict_Array,old_Predict_Array));
+
         Y_Test_Predict=sum(Predict_Array,2);
         
         %13) Finally calculate a R^2(Predict) value for the test set.
