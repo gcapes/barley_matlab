@@ -90,6 +90,11 @@ for Run_V=1:1
         for m=1:48
             Squared_Terms(:,m) = Training_Set_Start(:,m).^2;
         end
+        % Use vectorized assignment instead of loop without preallocated
+        % array.
+        Squared_Terms_vec=Training_Set_Start.^2
+        % Check that vectorized assignment gives same result
+        assert(isequal(Squared_Terms_vec,Squared_Terms));
         Counter_3=1;
         for o=1:48
             for p=1:o-1
