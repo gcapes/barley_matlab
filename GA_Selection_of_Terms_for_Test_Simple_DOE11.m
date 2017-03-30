@@ -195,7 +195,14 @@ Run_1 Record_Consensus_Chromasomes Best_Chromasomes Best_Consensus_Chromasome Be
     No_Columns=sum(Population_to_be_Measured,2);
     Fitness_WP_R=zeros(Nrow_4,1);
     for Working_Pop=1:Nrow_4
+        tic;
         Trial_Z_Scales=Z_Scales(:,find(Population_to_be_Measured(Working_Pop,:)==1));
+        gtimer=toc;
+        tic;
+        Trial_Z_Scales_log=Z_Scales(:,Population_to_be_Measured(Working_Pop,:)==1);
+        mtimer=toc;
+        assert(isequal(Trial_Z_Scales,Trial_Z_Scales_log));
+        sprintf('%s%g%s%g%s%g','Gtime=',gtimer,'; Mtime=',mtimer,'; Mspeedup=',double(gtimer)/double(mtimer))
         
         Cell_Array_Trial_Z_Scales{Working_Pop}=Trial_Z_Scales;
         
