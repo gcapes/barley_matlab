@@ -180,6 +180,9 @@ for Run_V=1:1
             else
             end
         end
+        old_Trial_Z_Scales=Trial_Z_Scales;
+        Trial_Z_Scales = X_Full_Train(:,Best_GA_Chromasome==1);
+        assert (isequal(Trial_Z_Scales,old_Trial_Z_Scales));
         
         Units=ones(Nrow_1,1); %Nrow_1=size of training set
         X_Train=[Units, Trial_Z_Scales];
