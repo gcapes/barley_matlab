@@ -90,8 +90,7 @@ for Run_V=1:1
         Squared_Terms=Training_Set_Start.^2;
         
         % Preallocate array for cross terms
-        n_cross_cols = size(Training_Set_Start,2);
-        n_cross_rows = size(Training_Set_Start,1);
+        [n_cross_rows, n_cross_cols] = size(Training_Set_Start);
         Cross_Terms = zeros(n_cross_rows,0.5*n_cross_cols*(n_cross_cols-1));
         Counter_3=1;
         for o=1:n_cross_cols
