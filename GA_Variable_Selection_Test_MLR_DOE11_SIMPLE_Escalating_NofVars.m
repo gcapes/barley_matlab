@@ -88,6 +88,7 @@ for Run_V=1:1
         %and all interactions.
         clear Squared_Terms Cross_Terms
         Squared_Terms=Training_Set_Start.^2;
+        
         Counter_3=1;
         for o=1:48
             for p=1:o-1
@@ -95,6 +96,18 @@ for Run_V=1:1
                 Counter_3=Counter_3+1;
             end
         end
+        
+        n_cross_cols = size(Training_Set_Start,2);
+        n_cross_rows = size(Training_Set_Start,1);
+        Cross_Terms_2 = zeros(n_cross_rows,0.5*n_cross_cols*(n_cross_cols-1));
+        Counter_3=1;
+        for o=1:n_cross_cols
+            for p=1:o-1
+                Cross_Terms_2(:,Counter_3) = Training_Set_Start(:,o).*Training_Set_Start(:,p);
+                Counter_3=Counter_3+1;
+            end
+        end
+        assert(isequal(Cross_Terms_2,Cross_Terms));
         
         X_Full_Train=[Training_Set_Start, Squared_Terms, Cross_Terms];
         [Nrow_1,Ncol]=size(X_Full_Train);
