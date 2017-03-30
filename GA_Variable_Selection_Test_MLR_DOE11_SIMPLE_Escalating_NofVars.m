@@ -105,11 +105,7 @@ for Run_V=1:1
         
         %7) The same thing can be done for the Test set
         clear Squared_Terms Cross_Terms
-        for r=1:48
-            Squared_Terms(:,r) = Test_Set_Start(:,r).^2;
-        end
-        Squared_Terms_vec = Test_Set_Start.^2;
-        assert(isequal(Squared_Terms,Squared_Terms_vec));
+        Squared_Terms = Test_Set_Start.^2;
         
         Counter_4=1;
         for s=1:48
