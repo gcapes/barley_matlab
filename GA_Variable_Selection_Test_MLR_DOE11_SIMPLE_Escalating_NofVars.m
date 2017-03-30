@@ -87,14 +87,7 @@ for Run_V=1:1
         %6) The Z Scales for the Training set (Start) are expanded to include squared terms
         %and all interactions.
         clear Squared_Terms Cross_Terms
-        for m=1:48
-            Squared_Terms(:,m) = Training_Set_Start(:,m).^2;
-        end
-        % Use vectorized assignment instead of loop without preallocated
-        % array.
-        Squared_Terms_vec=Training_Set_Start.^2
-        % Check that vectorized assignment gives same result
-        assert(isequal(Squared_Terms_vec,Squared_Terms));
+        Squared_Terms=Training_Set_Start.^2;
         Counter_3=1;
         for o=1:48
             for p=1:o-1
