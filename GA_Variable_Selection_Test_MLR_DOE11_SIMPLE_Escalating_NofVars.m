@@ -148,6 +148,9 @@ for Run_V=1:1
         %10)X_Full_Train and Y_Train are used as inputs to the Variable Selection GA which returns a
         %set of chromasomes (selected variables) with accompanying R^2 or Q^2 values
         clear Sorted_GA_Chromasomes Best_GA_Chromasome_NofVars
+        % Preallocate Best_GA_Chromasome_NofVars.
+        % We know it has 6 rows. 
+        % Does it always have size(X_Full_Train,2)+1 columns?
         for i=1:6
             NofVars=i*3;
             [Record_GA_Chromasomes]=GA_Selection_of_Terms_for_Test_Simple_DOE11(X_Full_Train,Y_Train_Start,NofVars,NofTrials,...
@@ -201,17 +204,10 @@ for Run_V=1:1
         
         Units=ones(Nrow_2,1);
         X_Predict=[Units, Trial_Z_Scales];
-        for ij=1:Nrow_2
-            for ik=1:Counter_6
-                Predict_Array(ij,ik)=X_Predict(ij,ik).*Coefficients(1,ik);
-            end
-        end
-        old_Predict_Array=Predict_Array;
         Predict_Array=zeros(size(X_Predict));
         for ij=1:Nrow_2
             Predict_Array(ij,:) = X_Predict(ij,:).*Coefficients(1,:);
         end
-        assert(isequal(Predict_Array,old_Predict_Array));
 
         Y_Test_Predict=sum(Predict_Array,2);
         
