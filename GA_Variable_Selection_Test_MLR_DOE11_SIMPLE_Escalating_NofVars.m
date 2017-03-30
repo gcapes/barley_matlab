@@ -172,17 +172,7 @@ for Run_V=1:1
         %a correlation is derived. Likely to be less than 21.
         
         clear Units Trial_Z_Scales
-        Counter_5=1;
-        for Gene_1=1:Ncol
-            if Best_GA_Chromasome(1,Gene_1)==1
-                Trial_Z_Scales(:,Counter_5)=X_Full_Train(:,Gene_1);
-                Counter_5=Counter_5+1;
-            else
-            end
-        end
-        old_Trial_Z_Scales=Trial_Z_Scales;
         Trial_Z_Scales = X_Full_Train(:,Best_GA_Chromasome==1);
-        assert (isequal(Trial_Z_Scales,old_Trial_Z_Scales));
         
         Units=ones(Nrow_1,1); %Nrow_1=size of training set
         X_Train=[Units, Trial_Z_Scales];
