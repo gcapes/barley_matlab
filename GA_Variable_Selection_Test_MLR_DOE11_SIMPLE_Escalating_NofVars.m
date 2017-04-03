@@ -179,7 +179,7 @@ for Run_V=1:1
         %Fit a MLR model (using regress)on the
         %Z_scales and return the R2 and Q2 value.
         %R Squared
-        [b,bint,r,rint,stats]=regress(Y_Train_Start,X_Train);
+        [b]=regress(Y_Train_Start,X_Train);
         
         Coefficients=b';
         %12) Having got the coefficients that represent the best model use them to predict values for the test set.
